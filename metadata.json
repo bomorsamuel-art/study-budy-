@@ -1,0 +1,5 @@
+{
+  "name": "AI Study Companion",
+  "description": "An AI-powered study assistant to help you learn, summarize notes, and generate flashcards.",
+  "requestFramePermissions": ["microphone", "camera"]
+}

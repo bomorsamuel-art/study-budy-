@@ -1,0 +1,52 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-[#F5F5F7] text-[#1D1D1F] antialiased transition-colors duration-300;
+  }
+  .dark body {
+    @apply bg-[#000000] text-[#F5F5F7];
+  }
+}
+
+@layer utilities {
+  .perspective-\[1000px\] {
+    perspective: 1000px;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  .apple-glass {
+    @apply bg-white/70 backdrop-blur-2xl border border-black/5 dark:bg-[#1C1C1E]/70 dark:border-white/10;
+  }
+  .apple-card {
+    @apply bg-white dark:bg-[#1C1C1E] rounded-[2rem] shadow-[0_8px_32px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] border border-black/5 dark:border-white/5;
+  }
+  .floating-dashboard {
+    @apply bg-white/80 dark:bg-[#1C1C1E]/80 backdrop-blur-3xl rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] border border-white/20 dark:border-white/10;
+  }
+  .sidebar-item-active {
+    @apply bg-indigo-600 text-white shadow-[0_4px_12px_rgba(79,70,229,0.3)] dark:shadow-[0_4px_12px_rgba(79,70,229,0.2)];
+  }
+  .kids-sidebar-item-active {
+    @apply bg-amber-500 text-white shadow-[0_4px_12px_rgba(245,158,11,0.3)];
+  }
+  .tiptap p.is-editor-empty:first-child::before {
+    color: #9ca3af;
+    content: attr(data-placeholder);
+    float: left;
+    height: 0;
+    pointer-events: none;
+  }
+  .dark .tiptap p.is-editor-empty:first-child::before {
+    color: #6b7280;
+  }
+}

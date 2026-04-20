@@ -1,0 +1,74 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "A user of the application",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "isOnline": { "type": "boolean" },
+        "lastSeen": { "type": "timestamp" }
+      },
+      "required": ["uid", "email", "displayName"]
+    },
+    "Chat": {
+      "title": "Chat",
+      "description": "A conversation between users",
+      "type": "object",
+      "properties": {
+        "participants": { 
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "lastMessage": { "type": "string" },
+        "updatedAt": { "type": "timestamp" }
+      },
+      "required": ["participants", "updatedAt"]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "A single message in a chat",
+      "type": "object",
+      "properties": {
+        "senderId": { "type": "string" },
+        "text": { "type": "string" },
+        "timestamp": { "type": "timestamp" },
+        "read": { "type": "boolean" }
+      },
+      "required": ["senderId", "text", "timestamp"]
+    },
+    "UserData": {
+      "title": "UserData",
+      "description": "Private user data like notes and flashcards",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "notes": { "type": "string" },
+        "flashcards": { "type": "string" },
+        "studyPlan": { "type": "string" }
+      },
+      "required": ["uid"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "User profiles"
+    },
+    "/user_data/{userId}": {
+      "schema": { "$ref": "#/entities/UserData" },
+      "description": "Private user data"
+    },
+    "/chats/{chatId}": {
+      "schema": { "$ref": "#/entities/Chat" },
+      "description": "Chat sessions"
+    },
+    "/chats/{chatId}/messages/{messageId}": {
+      "schema": { "$ref": "#/entities/Message" },
+      "description": "Messages within a chat"
+    }
+  }
+}
